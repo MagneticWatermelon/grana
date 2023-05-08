@@ -2,6 +2,7 @@ import { type AppType } from "next/app";
 import { MantineProvider } from "@mantine/core";
 import { api } from "~/utils/api";
 import Head from "next/head";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -20,7 +21,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           colorScheme: "light",
         }}
       >
-        <Component {...pageProps} />
+        <ClerkProvider {...pageProps}>
+          <Component {...pageProps} />
+        </ClerkProvider>
       </MantineProvider>
     </>
   );
