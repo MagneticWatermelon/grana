@@ -3,17 +3,46 @@
 
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
+    previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-    provider  = "postgresql"
-    url       = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
+    provider          = "postgresql"
+    url               = env("DATABASE_URL")
+    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+    directUrl         = env("DIRECT_URL")
+    extensions        = [timescaledb]
 }
 
 model Example {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+model device_info {
+    device_id    String @id
+    api_version  String
+    manufacturer String
+    model        String
+    os_name      String
+}
+
+model readings {
+    time                DateTime @db.Timestamptz(3)
+    device_id           String
+    battery_level       Float
+    battery_status      String
+    battery_temperature Float
+    bssid               String
+    cpu_avg_1min        Float
+    cpu_avg_5min        Float
+    cpu_avg_15min       Float
+    mem_free            Float
+    mem_used            Float
+    rssi                Float
+    ssid                String
+
+    @@unique([device_id, time(sort: Desc)])
+    @@index([time(sort: Desc)])
 }
