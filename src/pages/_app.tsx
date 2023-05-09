@@ -3,12 +3,13 @@ import { MantineProvider } from "@mantine/core";
 import { api } from "~/utils/api";
 import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
+import { CustomAppShell } from "~/components/AppShell/AppShell";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Page title</title>
+        <title>Grana</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -22,7 +23,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         }}
       >
         <ClerkProvider {...pageProps}>
-          <Component {...pageProps} />
+          <CustomAppShell>
+            <Component {...pageProps} />
+          </CustomAppShell>
         </ClerkProvider>
       </MantineProvider>
     </>
