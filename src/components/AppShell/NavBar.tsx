@@ -78,7 +78,7 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
           component={Link}
           label="Home"
           href="/"
-          icon={<Home size={18} stroke="1.5" />}
+          icon={<Home color="#009119" size={20} strokeWidth={2} />}
         />
       </Navbar.Section>
     </Navbar>
