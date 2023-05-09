@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
 import {
   Navbar,
   MediaQuery,
@@ -8,8 +7,9 @@ import {
   rem,
   NavLink,
 } from "@mantine/core";
-import { Home } from "lucide-react";
+import { Building, Home } from "lucide-react";
 import Link from "next/link";
+import { UserSection } from "./UserSection";
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -17,8 +17,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   topSection: {
-    paddingTop: theme.spacing.xs,
-    paddingBottom: `calc(${theme.spacing.xs} + 1px)`,
+    paddingTop: `calc(${theme.spacing.xs} - 2px)`,
+    paddingBottom: `calc(${theme.spacing.xs} - 2px)`,
     paddingLeft: theme.spacing.lg,
     marginLeft: `calc(${theme.spacing.md} * -1)`,
     marginRight: `calc(${theme.spacing.md} * -1)`,
@@ -53,7 +53,7 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
       className={classes.navbar}
       hiddenBreakpoint="sm"
       hidden={hidden}
-      width={{ sm: 200, lg: 200 }}
+      width={{ sm: 170, lg: 170 }}
       p="md"
     >
       <MediaQuery largerThan="sm" styles={{ display: "none" }}>
@@ -66,11 +66,7 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
         />
       </MediaQuery>
       <Navbar.Section className={classes.topSection}>
-        <UserButton
-          showName
-          userProfileMode="navigation"
-          userProfileUrl="/profile"
-        />
+        <UserSection />
       </Navbar.Section>
 
       <Navbar.Section grow className={classes.section}>
@@ -79,6 +75,12 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
           label="Home"
           href="/"
           icon={<Home color="#009119" size={20} strokeWidth={2} />}
+        />
+        <NavLink
+          component={Link}
+          label="Organization"
+          href="/organization"
+          icon={<Building color="#009119" size={20} strokeWidth={2} />}
         />
       </Navbar.Section>
     </Navbar>

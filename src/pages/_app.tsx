@@ -1,9 +1,9 @@
 import { type AppType } from "next/app";
 import { MantineProvider } from "@mantine/core";
-import { api } from "~/utils/api";
+import { api } from "@/utils/api";
 import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
-import { CustomAppShell } from "~/components/AppShell/AppShell";
+import { CustomAppShell } from "@/components/AppShell/AppShell";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (

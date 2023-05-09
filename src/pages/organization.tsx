@@ -1,11 +1,11 @@
-import { UserProfile } from "@clerk/nextjs";
+import { OrganizationProfile } from "@clerk/nextjs";
 import { Center } from "@mantine/core";
 import { NextPage } from "next";
 
-const GranaUserProfile: NextPage = () => {
+const GranaOrgProfile: NextPage = () => {
   return (
     <Center>
-      <UserProfile
+      <OrganizationProfile
         appearance={{
           variables: {
             colorPrimary: "#009119",
@@ -23,4 +23,4 @@ const GranaUserProfile: NextPage = () => {
   );
 };
 
-export default GranaUserProfile;
+export default GranaOrgProfile;
