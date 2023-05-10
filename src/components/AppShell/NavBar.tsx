@@ -7,22 +7,32 @@ import {
   rem,
   NavLink,
 } from "@mantine/core";
-import { Building, Home } from "lucide-react";
+import { Building, Home, User } from "lucide-react";
 import Link from "next/link";
 import { UserSection } from "./UserSection";
+import { OrganizationSwitcher } from "@clerk/nextjs";
 
 const useStyles = createStyles((theme) => ({
   navbar: {
     paddingTop: 0,
   },
 
-  topSection: {
+  profileSection: {
     paddingTop: `calc(${theme.spacing.xs} - 2px)`,
     paddingBottom: `calc(${theme.spacing.xs} - 2px)`,
     paddingLeft: theme.spacing.lg,
     marginLeft: `calc(${theme.spacing.md} * -1)`,
     marginRight: `calc(${theme.spacing.md} * -1)`,
     borderBottom: `${rem(1)} solid ${theme.colors.gray[3]}`,
+  },
+  orgSection: {
+    paddingTop: `calc(${theme.spacing.xs} - 2px)`,
+    paddingBottom: `calc(${theme.spacing.xs} - 2px)`,
+    paddingLeft: theme.spacing.lg,
+    marginLeft: `calc(${theme.spacing.md} * -1)`,
+    marginRight: `calc(${theme.spacing.md} * -1)`,
+    borderBottom: `${rem(1)} solid ${theme.colors.gray[3]}`,
+    overflowX: "clip",
   },
   section: {
     marginLeft: `calc(${theme.spacing.md} * -1)`,
@@ -65,8 +75,12 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
           mr="xl"
         />
       </MediaQuery>
-      <Navbar.Section className={classes.topSection}>
+      <Navbar.Section className={classes.profileSection}>
         <UserSection />
+      </Navbar.Section>
+
+      <Navbar.Section className={classes.orgSection}>
+        <OrganizationSwitcher />
       </Navbar.Section>
 
       <Navbar.Section grow className={classes.section}>
@@ -75,6 +89,12 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
           label="Home"
           href="/"
           icon={<Home color="#009119" size={20} strokeWidth={2} />}
+        />
+        <NavLink
+          component={Link}
+          label="Profile"
+          href="/profile"
+          icon={<User color="#009119" size={20} strokeWidth={2} />}
         />
         <NavLink
           component={Link}
