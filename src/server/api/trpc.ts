@@ -20,6 +20,10 @@ import { prisma } from "@/server/db";
 
 type CreateContextOptions = Record<string, never>;
 
+interface AuthContext {
+  auth: SignedInAuthObject | SignedOutAuthObject;
+}
+
 /**
  * This helper generates the "internals" for a tRPC context. If you need to use it, you can export
  * it from here.
@@ -30,9 +34,13 @@ type CreateContextOptions = Record<string, never>;
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = (_opts: CreateContextOptions) => {
+const createInnerTRPCContext = async (
+  { auth }: AuthContext,
+  _opts: CreateContextOptions
+) => {
   return {
     prisma,
+    auth,
   };
 };
 
@@ -42,8 +50,8 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = (_opts: CreateNextContextOptions) => {
-  return createInnerTRPCContext({});
+export const createTRPCContext = (opts: CreateNextContextOptions) => {
+  return createInnerTRPCContext({ auth: getAuth(opts.req) }, {});
 };
 
 /**
@@ -53,9 +61,14 @@ export const createTRPCContext = (_opts: CreateNextContextOptions) => {
  * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
  * errors on the backend.
  */
-import { initTRPC } from "@trpc/server";
+import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import {
+  SignedInAuthObject,
+  SignedOutAuthObject,
+  getAuth,
+} from "@clerk/nextjs/dist/server";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -78,6 +91,17 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  * "/src/server/api/routers" directory.
  */
 
+const isAuthed = t.middleware(({ next, ctx }) => {
+  if (!ctx.auth.userId) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({
+    ctx: {
+      ...ctx,
+    },
+  });
+});
+
 /**
  * This is how you create new routers and sub-routers in your tRPC API.
  *
@@ -93,3 +117,5 @@ export const createTRPCRouter = t.router;
  * are logged in.
  */
 export const publicProcedure = t.procedure;
+
+export const protectedProcedure = t.procedure.use(isAuthed);

@@ -1,4 +1,8 @@
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "@/server/api/trpc";
 
 export const deviceRouter = createTRPCRouter({
   // hello: publicProcedure
@@ -8,7 +12,7 @@ export const deviceRouter = createTRPCRouter({
   //       greeting: `Hello ${input.text}`,
   //     };
   //   }),
-  getPintoDevices: publicProcedure.query(({ ctx }) => {
+  getPintoDevices: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.device_info.findMany({
       take: 10,
       where: {
