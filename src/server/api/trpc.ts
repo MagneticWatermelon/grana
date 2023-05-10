@@ -34,7 +34,7 @@ interface AuthContext {
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = async (
+const createInnerTRPCContext = (
   { auth }: AuthContext,
   _opts: CreateContextOptions
 ) => {

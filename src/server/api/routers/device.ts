@@ -19,7 +19,7 @@ export const deviceRouter = createTRPCRouter({
       })
     )
     .query(async ({ ctx, input }) => {
-      let res = await ctx.prisma.device_info.findMany({
+      const res = await ctx.prisma.device_info.findMany({
         where: {},
         distinct: [input.field],
       });
