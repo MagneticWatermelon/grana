@@ -6,7 +6,7 @@ import {
   createStyles,
   rem,
 } from "@mantine/core";
-import { Building, Home, User } from "lucide-react";
+import { Building, Home, LineChart, User } from "lucide-react";
 import { UserSection } from "./UserSection";
 import { OrganizationSwitcher } from "@clerk/nextjs";
 import { NavBarLink } from "../Link/Link";
@@ -97,6 +97,11 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
           label="Organization"
           href="/organization"
           icon={<Building color="#009119" size={20} strokeWidth={2} />}
+        />
+        <NavBarLink
+          label="Insights"
+          href="/insights"
+          icon={<LineChart color="#009119" size={20} strokeWidth={2} />}
         />
       </Navbar.Section>
     </Navbar>
