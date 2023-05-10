@@ -5,12 +5,11 @@ import {
   useMantineTheme,
   createStyles,
   rem,
-  NavLink,
 } from "@mantine/core";
 import { Building, Home, User } from "lucide-react";
-import Link from "next/link";
 import { UserSection } from "./UserSection";
 import { OrganizationSwitcher } from "@clerk/nextjs";
+import { NavBarLink } from "../Link/Link";
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -84,20 +83,17 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
       </Navbar.Section>
 
       <Navbar.Section grow className={classes.section}>
-        <NavLink
-          component={Link}
+        <NavBarLink
           label="Home"
           href="/"
           icon={<Home color="#009119" size={20} strokeWidth={2} />}
         />
-        <NavLink
-          component={Link}
+        <NavBarLink
           label="Profile"
           href="/profile"
           icon={<User color="#009119" size={20} strokeWidth={2} />}
         />
-        <NavLink
-          component={Link}
+        <NavBarLink
           label="Organization"
           href="/organization"
           icon={<Building color="#009119" size={20} strokeWidth={2} />}
