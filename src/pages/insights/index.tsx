@@ -1,5 +1,5 @@
-import { FilterAccordion } from "@/components/Filter/FilterAccordion";
-import { Center, Flex, List, createStyles } from "@mantine/core";
+import { FilterAccordion, FilteredDeviceTable } from "@/components";
+import { Center, Flex, createStyles } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { NextPage } from "next";
 
@@ -25,23 +25,24 @@ const Insights: NextPage = () => {
       api_version: "",
       os_name: "",
     },
+
+    transformValues: (values) => {
+      return {
+        manufacturer: values.manufacturer ? values.manufacturer : undefined,
+        model: values.model ? values.model : undefined,
+        api_version: values.api_version ? values.api_version : undefined,
+        os_name: values.os_name ? values.os_name : undefined,
+      };
+    },
   });
 
   return (
     <Flex>
-      <form
-        className={classes.main}
-        onSubmit={form.onSubmit((values) => console.log(values))}
-      >
+      <form className={classes.main}>
         <FilterAccordion form={form} />
       </form>
       <Center>
-        <List>
-          <List.Item>{form.values.manufacturer}</List.Item>
-          <List.Item>{form.values.model}</List.Item>
-          <List.Item>{form.values.api_version}</List.Item>
-          <List.Item>{form.values.os_name}</List.Item>
-        </List>
+        <FilteredDeviceTable values={form.getTransformedValues()} />
       </Center>
     </Flex>
   );
