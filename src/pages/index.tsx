@@ -83,7 +83,9 @@ const Home: NextPage = () => {
   return (
     <Flex justify="center" align="center" direction="column">
       <Text>
-        Access Denied. You are not a member so you dont get to see anything.
+        Access Denied. You are not a member so you dont get to see anything. If
+        you believe you are, try changing you workspace from the left of the
+        screen above the navigation bar.
       </Text>
       <Text component="p">
         We regret to inform you that access to our esteemed organization's
