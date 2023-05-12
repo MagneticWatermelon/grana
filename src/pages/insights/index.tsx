@@ -1,18 +1,21 @@
 import { FilterAccordion, FilteredDeviceTable } from "@/components";
-import { Center, Flex, createStyles } from "@mantine/core";
+import { Flex, createStyles } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { NextPage } from "next";
 
 const useStyles = createStyles((theme) => ({
   main: {
+    height: "100%",
+  },
+  form: {
     flexDirection: "row",
     minWidth: "17rem",
     borderColor: `${theme.colors.gray[3]}`,
     borderStyle: "solid",
-    borderWidth: "1px 1px 0 1px",
+    borderWidth: "1px 0 1px 1px",
   },
-  filters: {
-    padding: "0.5rem 0 0.5rem 1rem",
+  table: {
+    width: "100%",
   },
 }));
 const Insights: NextPage = () => {
@@ -37,13 +40,13 @@ const Insights: NextPage = () => {
   });
 
   return (
-    <Flex>
-      <form className={classes.main}>
+    <Flex className={classes.main}>
+      <form className={classes.form}>
         <FilterAccordion form={form} />
       </form>
-      <Center>
+      <div className={classes.table}>
         <FilteredDeviceTable values={form.getTransformedValues()} />
-      </Center>
+      </div>
     </Flex>
   );
 };

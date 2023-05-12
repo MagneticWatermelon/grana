@@ -13,9 +13,6 @@ export const deviceRouter = createTRPCRouter({
     )
     .query(({ ctx, input }) => {
       return ctx.prisma.device_info.findMany({
-        select: {
-          device_id: true,
-        },
         where: {
           model: {
             equals: input.model,
