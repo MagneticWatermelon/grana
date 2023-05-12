@@ -47,6 +47,7 @@ export function FilteredDeviceTable({ values }: FilteredDeviceTableProps) {
       ]}
       fetching={devices.isLoading}
       loaderColor="green"
+      idAccessor="device_id"
       records={devices.data?.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)}
       totalRecords={devices.data?.length}
       recordsPerPage={PAGE_SIZE}

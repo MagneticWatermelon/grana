@@ -24,7 +24,7 @@ interface FormValues {
   os_name: string;
 }
 
-export function FilterAccordion({
+export function FilterDeviceAccordion({
   form,
 }: {
   form: UseFormReturnType<FormValues>;

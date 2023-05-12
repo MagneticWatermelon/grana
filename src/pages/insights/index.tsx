@@ -1,4 +1,4 @@
-import { FilterAccordion, FilteredDeviceTable } from "@/components";
+import { FilterDeviceAccordion, FilteredDeviceTable } from "@/components";
 import { Flex, createStyles } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { NextPage } from "next";
@@ -42,7 +42,7 @@ const Insights: NextPage = () => {
   return (
     <Flex className={classes.main}>
       <form className={classes.form}>
-        <FilterAccordion form={form} />
+        <FilterDeviceAccordion form={form} />
       </form>
       <div className={classes.table}>
         <FilteredDeviceTable values={form.getTransformedValues()} />

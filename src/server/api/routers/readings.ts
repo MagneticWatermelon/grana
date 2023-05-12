@@ -13,7 +13,7 @@ export const readingsRouter = createTRPCRouter({
       })
     )
     .query(async ({ ctx, input }) => {
-      let res = await ctx.prisma.readings.findMany({
+      const res = await ctx.prisma.readings.findMany({
         select: {
           time: true,
           [input.field]: true,
