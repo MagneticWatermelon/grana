@@ -1,4 +1,3 @@
-import { GlyphDot } from "@visx/glyph";
 import {
   AnimatedAxis,
   AnimatedGrid,
@@ -7,7 +6,6 @@ import {
   XYChart,
 } from "@visx/xychart";
 import { DateTime } from "luxon";
-import { RenderTooltipGlyphProps } from "@visx/xychart/lib/components/Tooltip";
 import { Loader } from "@mantine/core";
 
 const accessors = {
@@ -58,20 +56,6 @@ export function ReadingsChart({ query, isLoading, data }: ReadingsChartProps) {
         snapTooltipToDatumY
         showVerticalCrosshair
         showSeriesGlyphs
-        renderGlyph={({
-          x,
-          y,
-          size,
-          color,
-          onPointerMove,
-          onPointerOut,
-          onPointerUp,
-        }: RenderTooltipGlyphProps<{ date: string; value: number }>) => {
-          const handlers = { onPointerMove, onPointerOut, onPointerUp };
-          return (
-            <GlyphDot left={x} top={y} fill={color} r={size} {...handlers} />
-          );
-        }}
         renderTooltip={({ tooltipData, colorScale }) => {
           if (tooltipData && tooltipData.nearestDatum && colorScale) {
             return (
