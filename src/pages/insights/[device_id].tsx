@@ -54,8 +54,10 @@ const DeviceReadings: NextPage = () => {
       const timeE = calcMillis(endTime.hour, endTime.minute, endTime.second);
 
       return {
-        start: startDay.plus(timeS).toJSDate(),
-        end: endDay.plus(timeE).toJSDate(),
+        startDay: startDay.plus(timeS).toJSDate(),
+        endDay: endDay.plus(timeE).toJSDate(),
+        startTime: values.startTime,
+        endTime: values.endTime,
         query: values.query,
       };
     },
@@ -63,8 +65,8 @@ const DeviceReadings: NextPage = () => {
 
   const custom = api.readings.getCustomQuery.useQuery({
     device_id: router.query.device_id as string,
-    start: form.getTransformedValues().start,
-    end: form.getTransformedValues().end,
+    start: form.getTransformedValues().startDay,
+    end: form.getTransformedValues().endDay,
     field: form.getTransformedValues().query,
   });
 
