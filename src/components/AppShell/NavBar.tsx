@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { Building, Home, LineChart, User } from "lucide-react";
 import { UserSection } from "./UserSection";
-import { OrganizationSwitcher } from "@clerk/nextjs";
+import { OrganizationSwitcher, useOrganization } from "@clerk/nextjs";
 import { NavBarLink } from "../Link/Link";
 
 const useStyles = createStyles((theme) => ({
@@ -56,6 +56,7 @@ interface NavBarProps {
 export function CustomNavbar({ hidden, handler }: NavBarProps) {
   const theme = useMantineTheme();
   const { classes } = useStyles();
+  const { organization } = useOrganization();
 
   return (
     <Navbar
@@ -93,16 +94,20 @@ export function CustomNavbar({ hidden, handler }: NavBarProps) {
           href="/profile"
           icon={<User color="#009119" size={20} strokeWidth={2} />}
         />
-        <NavBarLink
-          label="Organization"
-          href="/organization"
-          icon={<Building color="#009119" size={20} strokeWidth={2} />}
-        />
-        <NavBarLink
-          label="Insights"
-          href="/insights"
-          icon={<LineChart color="#009119" size={20} strokeWidth={2} />}
-        />
+        {organization && (
+          <>
+            <NavBarLink
+              label="Organization"
+              href="/organization"
+              icon={<Building color="#009119" size={20} strokeWidth={2} />}
+            />
+            <NavBarLink
+              label="Insights"
+              href="/insights"
+              icon={<LineChart color="#009119" size={20} strokeWidth={2} />}
+            />
+          </>
+        )}
       </Navbar.Section>
     </Navbar>
   );
