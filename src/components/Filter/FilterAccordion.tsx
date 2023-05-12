@@ -32,10 +32,6 @@ export function FilterAccordion({
   const { classes } = useStyles();
   const [value, setValue] = useState<string[]>([]);
 
-  const submitForm = form.onSubmit(() => {
-    console.log(form.values);
-  });
-
   const manufVals = api.device.getDistinctDeviceInfoValuesPerField.useQuery({
     field: "manufacturer",
   });
@@ -82,10 +78,6 @@ export function FilterAccordion({
                 placeholder="Not selected"
                 data={manufVals.data}
                 {...form.getInputProps("manufacturer")}
-                onChange={(val: string) => {
-                  form.setFieldValue("manufacturer", val);
-                  submitForm();
-                }}
               />
             )}
           </Accordion.Panel>
@@ -100,10 +92,6 @@ export function FilterAccordion({
                 placeholder="Not selected"
                 data={modelVals.data}
                 {...form.getInputProps("model")}
-                onChange={(val: string) => {
-                  form.setFieldValue("model", val);
-                  submitForm();
-                }}
               />
             )}
           </Accordion.Panel>
@@ -118,10 +106,6 @@ export function FilterAccordion({
                 placeholder="Not selected"
                 data={apiLevelVals.data}
                 {...form.getInputProps("api_version")}
-                onChange={(val: string) => {
-                  form.setFieldValue("api_version", val);
-                  submitForm();
-                }}
               />
             )}
           </Accordion.Panel>
@@ -135,10 +119,6 @@ export function FilterAccordion({
                 placeholder="Not selected"
                 data={osNameVals.data}
                 {...form.getInputProps("os_name")}
-                onChange={(val: string) => {
-                  form.setFieldValue("os_name", val);
-                  submitForm();
-                }}
               />
             )}
           </Accordion.Panel>
