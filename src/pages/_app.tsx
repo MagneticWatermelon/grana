@@ -4,6 +4,7 @@ import { api } from "@/utils/api";
 import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
 import { CustomAppShell } from "@/components";
+import { theme } from "@/utils/theme";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -37,6 +38,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         withGlobalStyles
         withNormalizeCSS
         theme={{
+          ...theme,
           colorScheme: "light",
         }}
       >
