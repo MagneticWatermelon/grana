@@ -13,7 +13,7 @@ services:
   db-shadow:
     image: timescale/timescaledb:latest-pg15
     restart: always
-    container_name: grana-db-shadow
+    container_name: grana-shadow
     ports:
       - "5455:5432"
     environment:
