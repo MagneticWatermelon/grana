@@ -21,7 +21,7 @@ import { prisma } from "@/server/db";
 type CreateContextOptions = Record<string, never>;
 
 interface AuthContext {
-  auth: SignedInAuthObject | SignedOutAuthObject;
+  auth: SignedInAuthObject | SignedOutAuthObject | null;
 }
 
 /**
@@ -34,7 +34,7 @@ interface AuthContext {
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = (
+export const createInnerTRPCContext = (
   { auth }: AuthContext,
   _opts: CreateContextOptions
 ) => {
@@ -92,7 +92,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  */
 
 const isAuthed = t.middleware(({ next, ctx }) => {
-  if (!ctx.auth.userId) {
+  if (ctx.auth && !ctx.auth.userId) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({

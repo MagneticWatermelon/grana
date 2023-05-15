@@ -19,7 +19,7 @@ You'll need to install:
 
 ## Getting started
 
-### Rename .local.env to .env
+### Rename .env.example to .env
 
 ```bash
 mv .env.example .env.local
@@ -54,3 +54,17 @@ npm run dev
 ```
 
 Application should be running at [localhost](http://localhost:3000)
+
+## Testing
+
+### Copy .env.local to .env.test
+
+```bash
+mv .env.local .env.test
+```
+
+### Run the tests
+
+```bash
+npm run test:integration
+```
