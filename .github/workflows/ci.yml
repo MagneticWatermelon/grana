@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -28,28 +26,22 @@ jobs:
           POSTGRES_PASSWORD: password
         ports:
           - 5455:5432
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - name: Install dependencies
         run: npm install
-
       - name: Setup environment variables
         run: |
           cp .env.example .env
-          
       - name: Setup Database
         run: |
           tar -xf ./prisma/devices_small.tar.gz -C ./prisma
-          npm run local:migrate
+          npx prisma migrate deploy
           npm run local:seed
-          
       - name: Build application
         run: npm build
-
       - name: Run all tests
         run: npm run test:integration
