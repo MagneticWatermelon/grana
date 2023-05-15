@@ -10,7 +10,7 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     services:
-      timescale:
+      grana-db:
         image: timescale/timescaledb:latest-pg15
         env:
           POSTGRES_DB: grana
@@ -18,7 +18,7 @@ jobs:
           POSTGRES_PASSWORD: password
         ports:
           - 5433:5432
-      timescale-shadow:
+      grana-shadow:
         image: timescale/timescaledb:latest-pg15
         env:
           POSTGRES_DB: grana-shadow
