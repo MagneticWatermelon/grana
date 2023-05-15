@@ -1,12 +1,26 @@
 # Grana
 
-## Tech
+## Stack
 
-- [NextJS](https://nextjs.org/) + [tRPC](https://trpc.io/) as full-stack
+- [NextJS](https://nextjs.org/) + [tRPC](https://trpc.io/) (T3 stack without Tailwind essentialy)
 - [Mantine](https://mantine.dev/) for styling
 - [Prisma](https://www.prisma.io/) + [Neon](https://neon.tech/) with [TimescaleDB](https://www.timescale.com/) extension for DB operations
 - [Clerk](https://clerk.com/) for auth
 - Deployed with [Vercel](https://vercel.com/)
+
+## About
+
+Grana is a sample project for integrating aforementioned technologies together.
+There is sample dataset that can be played with inside the app
+but requires to be a member of an organization so change from your personal workspace to a organization workplace.
+
+## Known Issues
+
+This repo is a working example however there are some known issues which requires workarounds, such as:
+
+- [visx issue #1637](https://github.com/airbnb/visx/issues/1637)
+- [prisma issue #8325](https://github.com/prisma/prisma/issues/8325)
+- This is not a t3 problem but the link has a temporary solution[create-t3-app issue #1180](https://github.com/t3-oss/create-t3-app/issues/1180)
 
 ## Pre-requisites
 
