@@ -38,6 +38,9 @@ jobs:
       - name: Setup environment variables
         run: |
           cp .env.example .env
+          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
+          echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
+          
       - name: Setup Database
         run: |
           tar -xf ./prisma/devices_small.tar.gz -C ./prisma
