@@ -44,6 +44,6 @@ jobs:
           npx prisma migrate deploy
           npm run local:seed
       - name: Build application
-        run: npm build
+        run: npm run build
       - name: Run all tests
         run: npm run test:integration
