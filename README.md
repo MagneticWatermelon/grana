@@ -12,7 +12,13 @@
 
 Grana is a sample project for integrating aforementioned technologies together.
 There is sample dataset that can be played with inside the app
-but requires to be a member of an organization so change from your personal workspace to a organization workplace.
+but requires to be a member of an organization so change from your personal workspace
+to a organization workplace.
+
+Dataset includes a bunch of mobile device info and their time-series data which
+can be queried from the Insights page.`/insights` have the device table where
+individual rows can be clicked to go to device spesific page to query data such
+as battery levels, cpu and memory usage etc.
 
 ## Known Issues
 
